@@ -5,20 +5,18 @@ public class Speler {
 	private int score;
 	
 	public Speler(String naam){
-		this.setNaam(naam);
-		this.setScore(0);
+		setNaam(naam);
+		setScore(0);
 	}
 	
 	public String getNaam() {
 		return naam;
 	}
 	public void setNaam(String naam) {
-		if(naam.trim().isEmpty()||naam == null){
+		if(naam == null || naam.trim().isEmpty()){
 			throw new DomainException("Naam mag niet leeg zijn");
 		}
-		else{
 		this.naam = naam;
-		}
 	}
 	public int getScore() {
 		return score;
@@ -27,9 +25,7 @@ public class Speler {
 		if(score<0){
 			throw new DomainException("Score mag niet negatief zijn.");
 		}
-		else{
 		this.score = score;
-		}
 	}
 	public void addToScore(int score){
 		setScore(this.score+score);
