@@ -18,7 +18,7 @@ public class Cirkel extends Vorm
 
 	public void setRadius(int radius) 
 	{
-		if(radius<=0) throw new DomainException("Radius mag niet kleinder dan of gelijk aan nul zijn");
+		if(radius<=0) throw new DomainException("Radius mag niet kleiner dan of gelijk aan nul zijn");
 		this.radius = radius;
 	}
 

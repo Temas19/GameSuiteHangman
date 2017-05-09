@@ -3,6 +3,7 @@ package ui;
 import javax.swing.JOptionPane;
 
 import domain.Cirkel;
+import domain.DomainException;
 import domain.Punt;
 import domain.Rechthoek;
 import domain.Speler;
@@ -50,37 +51,65 @@ public class PictionaryUi
 		
 		private void voegCirkelToe() 
 		{
-			String xString = JOptionPane.showInputDialog("X-coordinaat van het punt:");
-			int x = Integer.parseInt(xString);
+			boolean isFout = true;
+			Cirkel c = null;
 			
-			String yString = JOptionPane.showInputDialog("Y-coordinaat van het punt:");
-			int y = Integer.parseInt(yString);
-			
-			Punt p = new Punt(x,y);
-			
-			String Sradius = JOptionPane.showInputDialog("Radius van de cirkel:");
-			int radius = Integer.parseInt(Sradius);
-			
-			Cirkel c = new Cirkel(p, radius);
+			while(isFout){
+				try {
+					String xString = JOptionPane.showInputDialog("X-coordinaat van het punt:");
+					int iX = Integer.parseInt(xString);
+
+					String yString = JOptionPane.showInputDialog("Y-coordinaat van het punt:");
+					int iY = Integer.parseInt(yString);
+					
+					Punt p = new Punt(iX, iY);
+					
+					String Sradius = JOptionPane.showInputDialog("Radius van de cirkel:");
+					int radius = Integer.parseInt(Sradius);
+					
+					c = new Cirkel(p, radius);
+					isFout = false;
+					
+				} catch (DomainException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					isFout = true;
+				}
+			}
 			
 			JOptionPane.showMessageDialog(null, "U heeft een correcte cirkel aangemaakt: " + c.toString());
 		}
 		
 		private void voegRechthoekToe()
 		{
-			String breedte = JOptionPane.showInputDialog("Breedte van de rechthoek:");
-			String hoogte = JOptionPane.showInputDialog("Hoogte van de rechthoek:");
-			String X = JOptionPane.showInputDialog("X-coördinaat van de linkerbovenhoek:");
-			String Y = JOptionPane.showInputDialog("Y-coördinaat van de linkerbovenhoek:");
+			boolean isFout = true;
+			Rechthoek r = null;
 			
-			int iX = Integer.parseInt(X);
-			int iY = Integer.parseInt(Y);
-			Punt bovenhoek = new Punt(iX, iY);
+			while(isFout){
+				try{
+					String X = JOptionPane.showInputDialog("X-coördinaat van de linkerbovenhoek:");
+					String Y = JOptionPane.showInputDialog("Y-coördinaat van de linkerbovenhoek:");
+					
+					int iX = Integer.parseInt(X);
+					int iY = Integer.parseInt(Y);
+					
+					Punt bovenhoek = new Punt(iX, iY);
+					
+					String breedte = JOptionPane.showInputDialog("Breedte van de rechthoek:");
+					String hoogte = JOptionPane.showInputDialog("Hoogte van de rechthoek:");
+					
+					int iBreedte = Integer.parseInt(breedte);
+					int iHoogte = Integer.parseInt(hoogte);
+					
+					r = new Rechthoek(bovenhoek, iBreedte, iHoogte);
+					isFout = false;
+					
+				} catch (DomainException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					isFout = true;
+				}
+				
+			}
 			
-			int iBreedte = Integer.parseInt(breedte);
-			int iHoogte = Integer.parseInt(hoogte);
-			
-			Rechthoek r = new Rechthoek(bovenhoek, iBreedte, iHoogte);
 			JOptionPane.showMessageDialog(null, "U heeft een correcte rechthoek aangemaakt: " + r.toString());
 		}
 }

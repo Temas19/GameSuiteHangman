@@ -22,19 +22,19 @@ public class Rechthoek extends Vorm
 
 	private void setLinkerBovenhoek(Punt linkerBovenhoek) // fix
 	{
-		if(linkerBovenhoek == null) throw new DomainException("");
+		if(linkerBovenhoek == null) throw new DomainException("De linkerbovenhoek maag niet leeg zijn");
 		this.linkerBovenhoek = linkerBovenhoek;
 	}
 
 	private void setBreedte(int breedte) 
 	{
-		if(breedte <= 0) throw new DomainException("");
+		if(breedte <= 0) throw new DomainException("De breedte moet groter zijn dan nul");
 		this.breedte = breedte;
 	}
 
 	private void setHoogte(int hoogte) 
 	{
-		if(hoogte <= 0) throw new DomainException("");
+		if(hoogte <= 0) throw new DomainException("De hoogte moet groter zijn dan nul");
 		this.hoogte = hoogte;
 	}
 
