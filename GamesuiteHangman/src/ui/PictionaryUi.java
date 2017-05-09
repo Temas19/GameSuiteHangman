@@ -2,6 +2,7 @@ package ui;
 
 import javax.swing.JOptionPane;
 
+import domain.Cirkel;
 import domain.Punt;
 import domain.Rechthoek;
 import domain.Speler;
@@ -48,7 +49,22 @@ public class PictionaryUi
 		}
 		
 		private void voegCirkelToe() 
-		{}
+		{
+			String xString = JOptionPane.showInputDialog("X-coordinaat van het punt:");
+			int x = Integer.parseInt(xString);
+			
+			String yString = JOptionPane.showInputDialog("Y-coordinaat van het punt:");
+			int y = Integer.parseInt(yString);
+			
+			Punt p = new Punt(x,y);
+			
+			String Sradius = JOptionPane.showInputDialog("Radius van de cirkel:");
+			int radius = Integer.parseInt(Sradius);
+			
+			Cirkel c = new Cirkel(p, radius);
+			
+			JOptionPane.showMessageDialog(null, "U heeft een correcte cirkel aangemaakt: " + c.toString());
+		}
 		
 		private void voegRechthoekToe()
 		{
