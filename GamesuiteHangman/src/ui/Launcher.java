@@ -13,6 +13,7 @@ public class Launcher {
 		String naam = JOptionPane.showInputDialog("Welkom! \nHoe heet je?");
 		Speler speler = new Speler(naam);
 
+
 		JOptionPane.showMessageDialog(null, speler.getNaam() + " zal binnekort spelen", speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
 		
 		Object[] shapes = {"Cirkel", "Rechthoek"};
@@ -47,6 +48,12 @@ public class Launcher {
 			JOptionPane.showMessageDialog(null, "U heeft een correcte rechthoek aangemaakt: " + r.toString());
 			
 		}
+
+		JOptionPane.showMessageDialog(null, "... zal binnekort spelen", speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
+		
+		PictionaryUi pu = new PictionaryUi(speler);
+		pu.ShowMenu();
+
 	}
 
 }
