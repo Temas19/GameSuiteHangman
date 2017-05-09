@@ -2,11 +2,7 @@ package ui;
 
 import javax.swing.JOptionPane;
 
-import domain.Cirkel;
-import domain.DomainException;
-import domain.Punt;
-import domain.Rechthoek;
-import domain.Speler;
+import domain.*;
 
 public class PictionaryUi 
 {
@@ -100,7 +96,9 @@ public class PictionaryUi
 					int iBreedte = Integer.parseInt(breedte);
 					int iHoogte = Integer.parseInt(hoogte);
 					
-					r = new Rechthoek(bovenhoek, iBreedte, iHoogte);
+					Omhullende omhullendNewRechthoek = new Omhullende(bovenhoek, iBreedte, iHoogte);
+					
+					r = new Rechthoek(bovenhoek, iBreedte, iHoogte, omhullendNewRechthoek);
 					isFout = false;
 					
 				} catch (DomainException e) {
