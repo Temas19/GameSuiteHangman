@@ -13,7 +13,7 @@ public class Speler {
 		return naam;
 	}
 	public void setNaam(String naam) {
-		if(naam.isEmpty()||naam==null){
+		if(naam.trim().isEmpty()||naam==null){
 			throw new DomainException("Naam mag niet leeg zijn");
 		}
 		else{
@@ -24,7 +24,7 @@ public class Speler {
 		return score;
 	}
 	public void setScore(int score) {
-		if(score>=0){
+		if(score<0){
 			throw new DomainException("Score mag niet negatief zijn.");
 		}
 		else{
