@@ -12,7 +12,7 @@ public class Speler {
 	public String getNaam() {
 		return naam;
 	}
-	public void setNaam(String naam) {
+	public void setNaam(String naam) { 
 		if(naam == null || naam.trim().isEmpty()){
 			throw new DomainException("Naam mag niet leeg zijn");
 		}
