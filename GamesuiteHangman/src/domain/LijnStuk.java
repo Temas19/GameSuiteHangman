@@ -17,6 +17,22 @@ public class LijnStuk extends Vorm
 		return startPunt;
 	}
 	
+	private Omhullende getOmhullende()
+	{
+		Punt linkerBovenhoek = null;
+		if(this.startPunt.getY() > this.eindPunt.getY())
+		{
+			linkerBovenhoek = startPunt;
+			int breedte = this.startPunt.getX() - this.eindPunt.getX();
+			int hoogte = this.startPunt.getY() - this.eindPunt.getY();
+			return new Omhullende(linkerBovenhoek, breedte, hoogte);
+		}
+		linkerBovenhoek = new Punt(this.startPunt.getX(), this.eindPunt.getY());
+		int breedte = this.eindPunt.getX() - this.startPunt.getX();
+		int hoogte = this.eindPunt.getY() - this.startPunt.getY();
+		return new Omhullende(linkerBovenhoek, breedte, hoogte);
+	}
+	
 	public void setStartEnEindPunt(Punt startPunt, Punt eindPunt)
 	{
 		if(startPunt == null || eindPunt == null) throw new DomainException("Punten mogen niet null zijn");
