@@ -99,9 +99,7 @@ public class PictionaryUi {
 				int iBreedte = Integer.parseInt(breedte);
 				int iHoogte = Integer.parseInt(hoogte);
 
-				Omhullende omhullendNewRechthoek = new Omhullende(bovenhoek, iBreedte, iHoogte);
-
-				r = new Rechthoek(bovenhoek, iBreedte, iHoogte, omhullendNewRechthoek);
+				r = new Rechthoek(bovenhoek, iBreedte, iHoogte);
 				isFout = false;
 
 			} catch (DomainException e) {
