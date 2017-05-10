@@ -30,14 +30,11 @@ public class Tekening extends Vorm
 	
 	public void voegToe(Vorm vorm)
 	{
-		for(Vorm vormpje : vormen){
-			if(vorm == null){
-				throw new DomainException("Vorm mag niet null zijn!");
-			}
-			if(vormpje.equals(vorm)){
-				throw new DomainException("Vorm komt reeds voor!");
-			}
-		}
+		if(vorm == null)throw new DomainException("Vorm mag niet null zijn!");
+
+		if(vormen.contains(vorm))throw new DomainException("Vorm komt reeds voor!");
+		// NIET AF
+		
 		vormen.add(vorm);
 	}
 	
