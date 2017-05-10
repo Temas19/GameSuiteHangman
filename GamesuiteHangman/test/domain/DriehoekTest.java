@@ -67,19 +67,19 @@ public class DriehoekTest {
 	}
 	@Test  (expected = DomainException.class)
 	public void setHoekPunten_gooit_DomainException_als_punten_1_en_2_samenvallend_zijn(){
-		Driehoek drieHoek = new Driehoek(punt1, zelfdeAlsPunt1, punt3);
+		new Driehoek(punt1, zelfdeAlsPunt1, punt3);
 	}
 	@Test  (expected = DomainException.class)
 	public void setHoekPunten_gooit_DomainException_als_punten_1_en_3_samenvallend_zijn(){
-		Driehoek drieHoek = new Driehoek(punt1, punt2 , zelfdeAlsPunt1);
+		new Driehoek(punt1, punt2 , zelfdeAlsPunt1);
 	}
 	@Test  (expected = DomainException.class)
 	public void setHoekPunten_gooit_DomainException_als_punten_2_en_3_samenvallend_zijn(){
-		Driehoek drieHoek = new Driehoek(punt1, punt2, zelfdeAlsPunt2);
+		new Driehoek(punt1, punt2, zelfdeAlsPunt2);
 	}
 	@Test  (expected = DomainException.class)
 	public void setHoekPunten_gooit_DomainException_als_punten_op_1_lijn_liggen(){
-		Driehoek drieHoek = new Driehoek(punt1, verschillendVanPunt1, verschillendVanPunt2);
+		new Driehoek(punt1, verschillendVanPunt1, verschillendVanPunt2);
 	}
 
 }

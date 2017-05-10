@@ -18,7 +18,7 @@ public class Omhullende extends Vorm
 		return hoogte;
 	}
 
-	public void setHoogte(int hoogte) 
+	private void setHoogte(int hoogte) 
 	{
 		if(hoogte < 0) throw new DomainException("Hoogte mag niet kleiner dan of gelijk zijn aan 0");
 		this.hoogte = hoogte;
@@ -28,7 +28,7 @@ public class Omhullende extends Vorm
 		return breedte;
 	}
 
-	public void setBreedte(int breedte) 
+	private void setBreedte(int breedte) 
 	{
 		if(breedte < 0) throw new DomainException("Breedte mag niet kleiner dan of gelijk zijn aan 0");
 		this.breedte = breedte;
@@ -38,7 +38,7 @@ public class Omhullende extends Vorm
 		return linkerBovenhoek;
 	}
 
-	public void setLinkerBovenhoek(Punt linkerBovenhoek) 
+	private void setLinkerBovenhoek(Punt linkerBovenhoek) 
 	{
 		if(linkerBovenhoek == null) throw new DomainException("Punt mag niet null zijn");
 		this.linkerBovenhoek = linkerBovenhoek;
@@ -71,7 +71,8 @@ public class Omhullende extends Vorm
 		if(o instanceof Omhullende)
 		{
 			Omhullende omhullende = (Omhullende) o;
-			if(this.getHoogte() == omhullende.getHoogte() && this.getBreedte() == omhullende.getBreedte() 
+			if(this.getHoogte() == omhullende.getHoogte() 
+					&& this.getBreedte() == omhullende.getBreedte() 
 					&& this.getLinkerBovenhoek().equals(omhullende.getLinkerBovenhoek()))
 			{
 				check = true;

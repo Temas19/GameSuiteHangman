@@ -4,7 +4,6 @@ public class Cirkel extends Vorm
 {
 	private int radius;
 	private Punt middelpunt;
-	private Omhullende omhullend;
 	
 	public Cirkel(Punt middelpunt, int radius)
 	{
@@ -46,10 +45,7 @@ public class Cirkel extends Vorm
 		if(o instanceof Cirkel)
 		{
 			Cirkel cirkel = (Cirkel) o;
-			if(this.radius == cirkel.getRadius() && this.middelpunt.equals(cirkel.getMiddelpunt()))
-			{
-				return true;
-			}
+			if(this.radius == cirkel.getRadius() && this.middelpunt.equals(cirkel.getMiddelpunt())) return true;
 		}
 		return false;
 	}

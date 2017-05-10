@@ -1,6 +1,6 @@
 package domain;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Tekening extends Vorm
 {
@@ -16,10 +16,9 @@ public class Tekening extends Vorm
 		setNaam(naam);
 	}
 	
-	private void setNaam(String naam){
-		if(naam == null || naam.isEmpty()){
-			throw new DomainException("Naam van tekening mag niet null of leeg zijn");
-		}
+	private void setNaam(String naam)
+	{
+		if(naam == null || naam.isEmpty()) throw new DomainException("Naam van tekening mag niet null of leeg zijn");
 		this.naam = naam;
 	}
 	
@@ -28,12 +27,17 @@ public class Tekening extends Vorm
 		return naam;
 	}
 	
+	public boolean bevat(Vorm vorm)
+	{
+		if(vormen.contains(vorm)) return true;
+		return false;
+	}
+	
 	public void voegToe(Vorm vorm)
 	{
-		if(vorm == null)throw new DomainException("Vorm mag niet null zijn!");
+		if(vorm == null) throw new DomainException("Vorm mag niet null zijn!");
 
-		if(vormen.contains(vorm))throw new DomainException("Vorm komt reeds voor!");
-		// NIET AF
+		if(this.bevat(vorm)) throw new DomainException("Vorm komt reeds voor!");
 		
 		vormen.add(vorm);
 	}
@@ -50,30 +54,19 @@ public class Tekening extends Vorm
 	
 	public void verwijder(Vorm vorm)
 	{
-		if(this.vormen.contains(vorm))
+		if(this.bevat(vorm))
 		{
 			this.vormen.remove(vorm);
 		}
 	}
 	
-	public boolean bevat(Vorm vorm)
+	public ArrayList<Vorm> getVormen()
 	{
-		for(Vorm v : vormen)
-		{
-			if(v.equals(vorm))
-			{
-				return true;
-			}
-		}
-		
-		return false;	
-	}
-	
-	public ArrayList<Vorm> getVormen(){
 		return vormen;
 	}
 	
-	public int getVormenSize(){
+	public int getVormenSize()
+	{
 		return vormen.size();
 	}
 
@@ -83,29 +76,22 @@ public class Tekening extends Vorm
 		boolean check = false;
 		if(o instanceof Tekening)
 		{
-			ArrayList<Vorm> tekeningEquals = ((Tekening) o).getVormen();
+			List<Vorm> tekeningEquals = ((Tekening) o).getVormen();
 			if(vormen.size() != tekeningEquals.size()) return false;
 			
 			for(Vorm vorm: vormen)
 			{
-				if(!tekeningEquals.contains(vorm)) 
-				{
-					return false;
-				}
-				else
-				{
-					check = true;
-				}
+				if(!tekeningEquals.contains(vorm)) return false;
+				else check = true;
 			}
 		}
 		return check;
 	}
 
-	public String toString() {
+	public String toString() 
+	{
 		String lijst = null;
-		for(Vorm vorm : vormen){
-			lijst = lijst + vorm.toString() + "\n";
-		}
+		for(Vorm vorm : vormen) lijst = lijst + vorm.toString() + "\n";
 		return "Tekening met naam " + getNaam() + " bestaat uit " + vormen.size() + " vormen:\n" + lijst;
 	}
 }

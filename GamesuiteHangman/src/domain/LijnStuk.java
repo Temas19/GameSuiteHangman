@@ -33,7 +33,7 @@ public class LijnStuk extends Vorm
 		return new Omhullende(linkerBovenhoek, breedte, hoogte);
 	}
 	
-	public void setStartEnEindPunt(Punt startPunt, Punt eindPunt)
+	private void setStartEnEindPunt(Punt startPunt, Punt eindPunt)
 	{
 		if(startPunt == null || eindPunt == null) throw new DomainException("Punten mogen niet null zijn");
 		if(startPunt.equals(eindPunt)) throw new DomainException("Punten mogen niet gelijk zijn");
