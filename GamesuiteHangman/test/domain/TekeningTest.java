@@ -39,12 +39,12 @@ public class TekeningTest {
 		assertEquals(0, huis.getAantalVormen());
 	}
 
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = DomainException.class)
 	public void Tekening_moet_exception_gooien_als_naam_null() {
 		new Tekening(null);
 	}
 
-	@Test (expected = IllegalArgumentException.class)
+	@Test (expected = DomainException.class)
 	public void Tekening_moet_exception_gooien_als_naam_leeg() {
 		new Tekening("");
 	}
@@ -109,6 +109,20 @@ public class TekeningTest {
 		tekening.voegToe(deur);
 		assertTrue(tekening.getVormen().get(tekening.getVormen().size() - 1).equals(deur));
 	}
+	
+	@Test
+	public void verwijder_moet_vorm_verwijderen(){
+		int size = tekening.getVormenSize();
+		tekening.verwijder(raam);
+		assertFalse(size == tekening.getVormenSize());
+	}
+	
+	@Test
+	public void getVorm_geef_vorm_terug(){
+		assertEquals(raam, tekening.getVorm(1));;
+	}
+	
+	
 
 
 	public Tekening createHuisMetSchouw() {

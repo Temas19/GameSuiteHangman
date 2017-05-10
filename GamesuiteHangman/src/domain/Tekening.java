@@ -75,6 +75,10 @@ public class Tekening extends Vorm
 	public ArrayList<Vorm> getVormen(){
 		return vormen;
 	}
+	
+	public int getVormenSize(){
+		return vormen.size();
+	}
 
 	@Override
 	public boolean equals(Object o) 
