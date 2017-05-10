@@ -3,23 +3,15 @@ package domain;
 public class Rechthoek extends Vorm
 {
 	Punt linkerBovenhoek;
-	Omhullende omhullende;
 	int breedte, hoogte;
 	
-	public Rechthoek(Punt linkerBovenhoek, int breedte, int hoogte, Omhullende omhullende)
+	public Rechthoek(Punt linkerBovenhoek, int breedte, int hoogte)
 	{
 		setLinkerBovenhoek(linkerBovenhoek);
 		setBreedte(breedte);
 		setHoogte(hoogte);
-		setOmhullende(omhullende);
 	}
 	
-	private void setOmhullende(Omhullende omhullende)
-	{
-		if(omhullende == null) throw new DomainException("Omhullend mag niet null zijn");
-		this.omhullende = omhullende;
-	}
-
 	private void setLinkerBovenhoek(Punt linkerBovenhoek) // fix
 	{
 		if(linkerBovenhoek == null) throw new DomainException("De linkerbovenhoek maag niet leeg zijn");
@@ -55,7 +47,7 @@ public class Rechthoek extends Vorm
 	
 	public Omhullende getOmhullende()
 	{
-		return omhullende;
+		return new Omhullende(linkerBovenhoek, breedte, hoogte);
 	}
 	
 	@Override
