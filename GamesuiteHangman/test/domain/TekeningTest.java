@@ -16,17 +16,20 @@ public class TekeningTest {
 	private Vorm raambalk1;
 	private Vorm raambalk2;
 	private Vorm schouwNietInTekening;
+	private Tekening tekening = new Tekening("Tekening1");
 	
 	@Before
 	public void setUp() {
-		gebouw = new Rechthoek(new Punt(100, 200), 200, 180);
+		gebouw = new Rechthoek(new Punt(100, 200), 200, 180, new Omhullende(new Punt(100,200), 200, 180));
 		dak = new Driehoek(new Punt(100, 200), new Punt(300, 200), new Punt(200, 100));
-		deur = new Rechthoek(new Punt(130, 280), 50,100);
-		raam = new Rechthoek(new Punt(210, 220), 80, 60);
+		deur = new Rechthoek(new Punt(130, 280), 50, 100, new Omhullende(new Punt(130,280), 50, 100));
+		raam = new Rechthoek(new Punt(210, 220), 80, 60, new Omhullende(new Punt(210,220), 80, 60));
 		deurknop = new Cirkel(new Punt(170, 320), 2);
 		raambalk1 = new LijnStuk(new Punt(210, 250), new Punt(290, 250));
 		raambalk2 = new LijnStuk(new Punt(250, 220), new Punt(250, 280));
-		schouwNietInTekening = new Rechthoek(new Punt(150, 150), 20,40);
+		schouwNietInTekening = new Rechthoek(new Punt(150, 150), 20, 40, new Omhullende(new Punt(150,150), 20, 40));
+		tekening.voegToe(gebouw);
+		tekening.voegToe(raam);
 	}
 
 	@Test
@@ -99,6 +102,12 @@ public class TekeningTest {
 		Tekening huisMetSchouw = createHuisMetSchouw();
 		huisMetSchouw.verwijder(schouwNietInTekening);
 		assertTrue(huis.equals(huisMetSchouw));
+	}
+	
+	@Test
+	public void voegToe_moet_vorm_toevoegen(){
+		tekening.voegToe(deur);
+		assertTrue(tekening.getVormen().get(tekening.getVormen().size() - 1).equals(deur));
 	}
 
 
