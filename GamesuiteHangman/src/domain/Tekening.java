@@ -53,12 +53,9 @@ public class Tekening extends Vorm
 	
 	public void verwijder(Vorm vorm)
 	{
-		for(Vorm v : vormen)
+		if(this.vormen.contains(vorm))
 		{
-			if(v.equals(vorm))
-			{
-				vormen.remove(v);
-			}
+			this.vormen.remove(vorm);
 		}
 	}
 	
@@ -80,14 +77,27 @@ public class Tekening extends Vorm
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if( o instanceof Tekening){
-			Tekening tekening = (Tekening) o;
-			if(this.getNaam().equals(tekening.getNaam())){
-				return true;
+	public boolean equals(Object o) 
+	{
+		boolean check = false;
+		if(o instanceof Tekening)
+		{
+			ArrayList<Vorm> tekeningEquals = ((Tekening) o).getVormen();
+			if(vormen.size() != tekeningEquals.size()) return false;
+			
+			for(Vorm vorm: vormen)
+			{
+				if(!tekeningEquals.contains(vorm)) 
+				{
+					return false;
+				}
+				else
+				{
+					check = true;
+				}
 			}
 		}
-		return false;
+		return check;
 	}
 
 	public String toString() {
