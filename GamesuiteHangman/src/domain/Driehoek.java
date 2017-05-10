@@ -46,6 +46,7 @@ public class Driehoek extends Vorm {
 		}
 		return false;
 	}
+	@Override
 	public boolean equals(Object object){
 		if(object instanceof Driehoek){
 			Driehoek d = (Driehoek) object;
@@ -55,6 +56,7 @@ public class Driehoek extends Vorm {
 		}
 		return false;
 	}
+	@Override
 	public String toString(){
 		return "Driehoek: hoekpunt1: "+this.hoekpunt1.toString()+" - hoekpunt2: "+this.hoekpunt2.toString()+" - hoekpunt3: "+this.hoekpunt3.toString();
 	}
