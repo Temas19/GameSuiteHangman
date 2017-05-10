@@ -4,6 +4,7 @@ public class Cirkel extends Vorm
 {
 	private int radius;
 	private Punt middelpunt;
+	private Omhullende omhullend;
 	
 	public Cirkel(Punt middelpunt, int radius)
 	{
@@ -16,7 +17,7 @@ public class Cirkel extends Vorm
 		return radius;
 	}
 
-	public void setRadius(int radius) 
+	private void setRadius(int radius) 
 	{
 		if(radius<=0) throw new DomainException("Radius mag niet kleiner dan of gelijk aan nul zijn");
 		this.radius = radius;
@@ -27,10 +28,16 @@ public class Cirkel extends Vorm
 		return middelpunt;
 	}
 
-	public void setMiddelpunt(Punt middelpunt) 
+	private void setMiddelpunt(Punt middelpunt) 
 	{
 		if(middelpunt == null) throw new DomainException("Middelpunt mag niet null zijn");
 		this.middelpunt = middelpunt;
+	}
+	
+	public Omhullende getOmhullende()
+	{
+		Punt linkerBovenhoek = new Punt(this.middelpunt.getX() - this.radius, this.middelpunt.getY() - this.radius);
+		return new Omhullende(linkerBovenhoek, this.radius * 2, this.radius * 2);
 	}
 	
 	@Override
