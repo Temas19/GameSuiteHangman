@@ -10,15 +10,17 @@ import domain.Speler;
 public class Launcher {
 
 	public static void main(String[] args) {
-		String naam = JOptionPane.showInputDialog("Welkom! \nHoe heet je?");
-		Speler speler = new Speler(naam);
+		try {
+			String naam = JOptionPane.showInputDialog("Welkom! \nHoe heet je?");
+			Speler speler = new Speler(naam);
 
+			JOptionPane.showMessageDialog(null, speler.getNaam() + " zal binnekort spelen", speler.getNaam(),
+					JOptionPane.INFORMATION_MESSAGE);
 
-		JOptionPane.showMessageDialog(null, speler.getNaam() + " zal binnekort spelen", speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
-		
-		
-		PictionaryUi pu = new PictionaryUi(speler);
-		pu.ShowMenu();
+			PictionaryUi pu = new PictionaryUi(speler);
+			pu.ShowMenu();
+		} catch (Exception e) {
+		}
 
 	}
 
