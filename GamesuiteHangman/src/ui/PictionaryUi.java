@@ -25,26 +25,26 @@ public class PictionaryUi
 	public void showMenu()
 	{
 		boolean running = true;
+		newTekening = voegToeNaamTekening();
+		GameHoofdScherm mainScherm = new GameHoofdScherm("", newTekening);
+		mainScherm.setVisible(true);
 		while(running)
 		{
 			JOptionPane.showMessageDialog(null, "...heeft als score: " + speler.getScore(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
 			JOptionPane.showMessageDialog(null, "... zal binnekort spelen", speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
 			
 			String keuze = JOptionPane.showInputDialog("1. Vorm maken \n2. Tekening tonen  \n\n0. Stop \nMaak uw keuze:");
-			if(keuze == null)
+			if(keuze == null || keuze.equals("0"))
 			{
 				running = false;
 			}
 			else if(keuze.equals("1"))
 			{
-				voegToeNaamTekening();
-				if(newTekening.getNaam() == null || newTekening.getNaam().trim().isEmpty()) return;
 				newVormMaken();
+				
 			}
 			else if(keuze.equals("2"))
 			{
-				GameHoofdScherm mainScherm = new GameHoofdScherm(newTekening.getNaam(), newTekening);
-				mainScherm.setVisible(true);
 				mainScherm.teken();
 			}
 			else
@@ -54,24 +54,25 @@ public class PictionaryUi
 		}
 	}
 	
-	private void voegToeNaamTekening()
+	private Tekening voegToeNaamTekening()
 	{
 		String naam = "";	
-		
+		Tekening tekening = null;
 		while(naam.trim().isEmpty())
 		{
 			naam = JOptionPane.showInputDialog("Geef de naam van de tekening:");
 			if(naam == null) break;
 			try
 			{
-				newTekening.setNaam(naam);
+				tekening = new Tekening(naam);
 			}
 			catch(DomainException e)
 			{
 				JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-				return;
 			}
 		}
+		
+		return tekening;
 	}
 	
 	private Punt newPuntMaken()
