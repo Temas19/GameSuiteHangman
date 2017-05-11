@@ -23,12 +23,33 @@ public class PictionaryUi
 
 	public void showMenu()
 	{
-		JOptionPane.showMessageDialog(null,"...heeft als score: " + speler.getScore());
-		JOptionPane.showMessageDialog(null, "... zal binnekort spelen", speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
-		newTekening = voegToeNaamTekening();
-		if(newTekening == null) return;
-		newVormMaken();
-		
+		boolean running = true;
+		while(running)
+		{
+			JOptionPane.showMessageDialog(null,"...heeft als score: " + speler.getScore());
+			JOptionPane.showMessageDialog(null, "... zal binnekort spelen", speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
+			
+			String keuze = JOptionPane.showInputDialog("1. Vorm maken \n2. Tekening tonen  \n\n0. Stop \nMaak uw keuze:");
+			if(keuze == null)
+			{
+				running = false;
+			}
+			else if(keuze.equals("1"))
+			{
+				newTekening = voegToeNaamTekening();
+				if(newTekening == null) return;
+				newVormMaken();
+			}
+			else if(keuze.equals("2"))
+			{
+				GameHoofdScherm mainScherm = new GameHoofdScherm(newTekening.getNaam(), newTekening);
+				mainScherm.teken();
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Foute input", "Fout", JOptionPane.WARNING_MESSAGE);
+			}
+		}
 	}
 	
 	private Tekening voegToeNaamTekening()
@@ -63,7 +84,7 @@ public class PictionaryUi
 		{
 			String xCoordinaatStr = JOptionPane.showInputDialog("Geef de X coordinaat in :");
 			String yCoordinaatStr = JOptionPane.showInputDialog("Geef de Y coordinaat in :");
-			if(xCoordinaatStr == null || yCoordinaatStr == null) break;
+			if(xCoordinaatStr == null || yCoordinaatStr == null ||  xCoordinaatStr.trim().isEmpty() || yCoordinaatStr.trim().isEmpty()) break;
 			int xCoordinaat = Integer.parseInt(xCoordinaatStr);
 			int yCoordinaat = Integer.parseInt(yCoordinaatStr);
 			try
@@ -89,24 +110,28 @@ public class PictionaryUi
 		{
 			Cirkel newCirkel = voegCirkelToe();
 			if(newCirkel == null) return;
+			newTekening.voegToe(newCirkel);
 			JOptionPane.showMessageDialog(null, "U heeft een correcte cirkel aangemaakt: \n" + newCirkel.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
 		} 
 		else if(keuze.equals("Rechthoek"))
 		{
 			Rechthoek newRechthoek = voegRechthoekToe();
 			if(newRechthoek == null) return;
+			newTekening.voegToe(newRechthoek);
 			JOptionPane.showMessageDialog(null, "U heeft een correcte rechthoek aangemaakt: \n" + newRechthoek.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
 		} 
 		else if(keuze.equals("Driehoek"))
 		{
 			Driehoek newDriehoek = voegDriehoekToe();
 			if(newDriehoek == null) return;
+			newTekening.voegToe(newDriehoek);
 			JOptionPane.showMessageDialog(null, "U heeft een correcte driehoek aangemaakt: \n" + newDriehoek.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
 		} 
 		else if(keuze.equals("Lijnstuk"))
 		{
 			LijnStuk newLijnstuk = voegLijnStukToe();
 			if(newLijnstuk == null) return;
+			newTekening.voegToe(newLijnstuk);
 			JOptionPane.showMessageDialog(null, "U heeft een correcte lijnstuk aangemaakt: \n" + newLijnstuk.toString(), speler.getNaam(), JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
@@ -122,7 +147,7 @@ public class PictionaryUi
 				JOptionPane.showMessageDialog(null, "Geef nu de x en y waarde van de middelpunt", null, JOptionPane.INFORMATION_MESSAGE);
 				Punt middelPunt = newPuntMaken();
 				String radiusStr = JOptionPane.showInputDialog("Geef de radius in :");
-				if(middelPunt == null || radiusStr == null) return null;
+				if(middelPunt == null || radiusStr == null || radiusStr.trim().isEmpty()) return null;
 				int radius = Integer.parseInt(radiusStr);
 				newCirkel = new Cirkel(middelPunt, radius);
 			}
