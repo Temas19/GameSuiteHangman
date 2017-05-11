@@ -1,5 +1,7 @@
 package domain;
 
+import java.awt.Graphics;
+
 public class LijnStuk extends Vorm
 {
 	private Punt startPunt, eindPunt;
@@ -17,7 +19,8 @@ public class LijnStuk extends Vorm
 		return startPunt;
 	}
 	
-	private Omhullende getOmhullende()
+	@Override
+	public Omhullende getOmhullende()
 	{
 		Punt linkerBovenhoek = null;
 		if(this.startPunt.getY() > this.eindPunt.getY())
@@ -39,6 +42,15 @@ public class LijnStuk extends Vorm
 		if(startPunt.equals(eindPunt)) throw new DomainException("Punten mogen niet gelijk zijn");
 		this.startPunt = startPunt;
 		this.eindPunt = eindPunt;
+	}
+	
+	@Override
+	public void teken(Graphics graphic)
+	{
+		graphic.drawLine(this.getStartPunt().getX(), 
+				this.getStartPunt().getY(), 
+				this.getEindPunt().getX(), 
+				this.getEindPunt().getY());
 	}
 	
 	@Override

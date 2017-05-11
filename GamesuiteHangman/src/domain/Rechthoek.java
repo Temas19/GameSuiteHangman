@@ -1,5 +1,7 @@
 package domain;
 
+import java.awt.Graphics;
+
 public class Rechthoek extends Vorm
 {
 	Punt linkerBovenhoek;
@@ -49,6 +51,16 @@ public class Rechthoek extends Vorm
 	{
 		return new Omhullende(linkerBovenhoek, breedte, hoogte);
 	}
+	
+	@Override
+	public void teken(Graphics graphic)
+	{
+		graphic.drawRect(this.getLinkerBovenhoek().getX(), 
+				this.getLinkerBovenhoek().getY(), 
+				this.getBreedte(), 
+				this.getHoogte());
+	}
+	
 	
 	@Override
 	public boolean equals(Object object)

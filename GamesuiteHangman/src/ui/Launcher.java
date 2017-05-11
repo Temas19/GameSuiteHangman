@@ -1,3 +1,4 @@
+
 package ui;
 
 import javax.swing.JOptionPane;
@@ -9,7 +10,7 @@ public class Launcher {
 	public static void main(String[] args) 
 	{
 		Speler speler = nieuwSpeler();
-		
+		if(speler == null) return;
 		PictionaryUi ui = new PictionaryUi(speler);
 		ui.showMenu();
 	}

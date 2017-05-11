@@ -1,8 +1,9 @@
 package domain;
 
+import java.awt.Graphics;
 import java.util.*;
 
-public class Tekening extends Vorm
+public class Tekening implements Drawable
 {
 	private String naam;
 	private static final int MIN_X = 0;
@@ -16,7 +17,7 @@ public class Tekening extends Vorm
 		setNaam(naam);
 	}
 	
-	private void setNaam(String naam)
+	public void setNaam(String naam)
 	{
 		if(naam == null || naam.isEmpty()) throw new DomainException("Naam van tekening mag niet null of leeg zijn");
 		this.naam = naam;
@@ -38,6 +39,10 @@ public class Tekening extends Vorm
 		if(vorm == null) throw new DomainException("Vorm mag niet null zijn!");
 
 		if(this.bevat(vorm)) throw new DomainException("Vorm komt reeds voor!");
+		if(vorm.getOmhullende().getMinX() < MIN_X 
+				|| vorm.getOmhullende().getMinY() < MIN_Y 
+				|| vorm.getOmhullende().getMaxX() > MAX_X 
+				|| vorm.getOmhullende().getMaxY() > MAX_Y) throw new DomainException("Jouw omhullende is niet correct");
 		
 		vormen.add(vorm);
 	}
@@ -69,7 +74,12 @@ public class Tekening extends Vorm
 	{
 		return vormen.size();
 	}
-
+	
+	public void teken(Graphics graphic)
+	{
+		for(Vorm vorm: vormen) vorm.teken(graphic);
+	}
+	
 	@Override
 	public boolean equals(Object o) 
 	{

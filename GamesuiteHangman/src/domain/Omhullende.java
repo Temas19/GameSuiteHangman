@@ -1,7 +1,7 @@
 package domain;
 
 
-public class Omhullende extends Vorm
+public class Omhullende
 
 {
 	private int hoogte, breedte;
@@ -44,27 +44,26 @@ public class Omhullende extends Vorm
 		this.linkerBovenhoek = linkerBovenhoek;
 	}
 	
-	public int getMinimum()
+	public int getMinX()
 	{
 		return this.getLinkerBovenhoek().getX();
 	}
 	
-	public int getMaximumX()
+	public int getMaxX()
 	{
 		return this.getLinkerBovenhoek().getX() + this.getBreedte();
 	}
 	
-	public int getMinimumY()
+	public int getMinY()
 	{
 		return this.getLinkerBovenhoek().getY();
 	}
 	
-	public int getMaximumY()
+	public int getMaxY()
 	{
 		return this.getLinkerBovenhoek().getY() + this.getHoogte();
 	}
 	
-	@Override
 	public boolean equals(Object o)
 	{
 		boolean check = false;
@@ -81,7 +80,6 @@ public class Omhullende extends Vorm
 		return check;
 	}
 	
-	@Override
 	public String toString()
 	{
 		return "Omhullende: " + this.getLinkerBovenhoek().toString() + " - " + this.getBreedte() + " - " + this.getHoogte(); 

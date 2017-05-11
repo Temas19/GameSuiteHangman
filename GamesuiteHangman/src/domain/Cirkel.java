@@ -1,5 +1,7 @@
 package domain;
 
+import java.awt.Graphics;
+
 public class Cirkel extends Vorm
 {
 	private int radius;
@@ -33,10 +35,20 @@ public class Cirkel extends Vorm
 		this.middelpunt = middelpunt;
 	}
 	
+	@Override
 	public Omhullende getOmhullende()
 	{
 		Punt linkerBovenhoek = new Punt(this.middelpunt.getX() - this.radius, this.middelpunt.getY() - this.radius);
 		return new Omhullende(linkerBovenhoek, this.radius * 2, this.radius * 2);
+	}
+	
+	@Override
+	public void teken(Graphics graphic)
+	{
+		graphic.drawOval(this.getOmhullende().getMinX(), 
+				this.getOmhullende().getMinY(), 
+				this.getOmhullende().getBreedte(), 
+				this.getOmhullende().getHoogte());
 	}
 	
 	@Override

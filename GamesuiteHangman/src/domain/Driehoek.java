@@ -1,5 +1,7 @@
 package domain;
 
+import java.awt.Graphics;
+
 public class Driehoek extends Vorm {
 	
 	private Punt hoekpunt1;
@@ -53,6 +55,16 @@ public class Driehoek extends Vorm {
 	}
 	
 	@Override
+	public void teken(Graphics graphic)
+	{
+		int[] xPoints = { this.getHoekPunt1().getX(), this.getHoekPunt2().getX(),
+				this.getHoekPunt3().getX() };
+		int[] yPoints = { this.getHoekPunt1().getY(), this.getHoekPunt2().getY(),
+				this.getHoekPunt3().getY() };
+		graphic.drawPolygon(xPoints, yPoints, 3);
+	}
+	
+	@Override
 	public boolean equals(Object object)
 	{
 		if(object instanceof Driehoek)
@@ -72,5 +84,66 @@ public class Driehoek extends Vorm {
 	public String toString()
 	{
 		return "Driehoek: hoekpunt1: "+this.hoekpunt1.toString()+" - hoekpunt2: "+this.hoekpunt2.toString()+" - hoekpunt3: "+this.hoekpunt3.toString();
+	}
+
+	@Override
+	public Omhullende getOmhullende() 
+	{
+		int hoekPunt1X = this.getHoekPunt1().getX();
+		int hoekPunt1Y = this.getHoekPunt1().getY();
+		
+		int hoekPunt2X = this.getHoekPunt2().getX();
+		int hoekPunt2Y = this.getHoekPunt2().getY();
+		
+		int hoekPunt3X = this.getHoekPunt3().getX();
+		int hoekPunt3Y = this.getHoekPunt3().getY();
+		
+		int minX = 0;
+		int maxX = 0;
+		int maxY = 0;
+		int minY = 0;
+
+		if (hoekPunt1X <= hoekPunt2X) 
+		{
+			if (hoekPunt1X <= hoekPunt3X) maxX = hoekPunt1X;
+			else maxX = hoekPunt3X;
+		}
+		else if (hoekPunt2X <= hoekPunt3X) maxX = hoekPunt2X;
+		else maxX = hoekPunt3X;
+		
+		
+		if (hoekPunt1X >= hoekPunt2X) 
+		{
+			if (hoekPunt1X >= hoekPunt3X) maxX = hoekPunt1X; 
+			else maxX = hoekPunt3X;
+		}
+		else if (hoekPunt2X >= hoekPunt3X) maxX = hoekPunt2X;
+		else maxX = hoekPunt3X;
+
+		
+		if (hoekPunt1Y >= hoekPunt2Y) 
+		{
+			if (hoekPunt1Y >= hoekPunt3Y) minY = hoekPunt1Y;
+			else minY = hoekPunt3Y;
+		}
+		else if (hoekPunt2Y >= hoekPunt3Y) minY = hoekPunt2Y;
+		else minY = hoekPunt3Y;
+
+		
+		if (hoekPunt1Y <= hoekPunt2Y)
+		{
+			if (hoekPunt1Y <= hoekPunt3Y) minY = hoekPunt1Y;
+			else minY = hoekPunt3Y;
+		}
+		else if (hoekPunt2Y <= hoekPunt3Y) minY = hoekPunt2Y;
+		else minY = hoekPunt3Y;
+
+	    Punt linkerBovenHoek = new Punt(maxX, minY);
+		int breedte = maxX - maxX;
+		int hoogte = minY - minY;
+
+		Omhullende omhullende = new Omhullende(linkerBovenHoek, breedte, hoogte);
+
+		return omhullende;
 	}
 }
