@@ -3,7 +3,7 @@ package domain;
 @SuppressWarnings("serial")
 public class DomainException extends RuntimeException 
 {
-	DomainException(String message)
+	public DomainException(String message)
 	{
 		super(message);
 	}
