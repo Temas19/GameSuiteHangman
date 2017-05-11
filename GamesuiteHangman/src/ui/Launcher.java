@@ -1,4 +1,3 @@
-
 package ui;
 
 import javax.swing.JOptionPane;
@@ -6,13 +5,25 @@ import javax.swing.JOptionPane;
 import domain.*;
 
 public class Launcher {
-
+	
 	public static void main(String[] args) 
 	{
 		Speler speler = nieuwSpeler();
-		if(speler == null) return;
-		PictionaryUi ui = new PictionaryUi(speler);
-		ui.showMenu();
+		
+		Object[] spelen = {"HangMan", "Pictionary"};
+		Object keuzeSpel = JOptionPane.showInputDialog(null, "Dag " + speler.getNaam() + ", welk spel wil je spelen?", "input", JOptionPane.INFORMATION_MESSAGE, null, spelen, null);
+		
+		if(keuzeSpel == null) return;
+
+		if(keuzeSpel.equals("HangMan")){
+			HangManUI ui = new HangManUI(speler);
+			ui.showMenu();
+		}
+		
+		if(keuzeSpel.equals("Pictionary")){
+			PictionaryUi ui = new PictionaryUi(speler);
+			ui.showMenu();
+		}
 	}
 	
 	private static Speler nieuwSpeler()
