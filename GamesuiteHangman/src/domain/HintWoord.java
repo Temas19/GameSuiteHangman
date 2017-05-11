@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class HintWoord {
 	ArrayList<HintLetter> letters = new ArrayList<>();
-
+	private String woord;
+	
 	public HintWoord(String woord) {
 		if (woord == null || woord.isEmpty()) {
 			throw new DomainException("Woord mag niet leeg zijn.");
 		}
+		this.woord = woord;
 		for (int i = 0; i < woord.length(); i++) {
 			this.letters.add(new HintLetter(woord.charAt(i)));
 			System.out.println(woord.charAt(i));
@@ -17,7 +19,7 @@ public class HintWoord {
 	}
 
 	public String getWoord() {
-		return this.toString();
+		return this.woord;
 	}
 
 	public boolean isGeraden() {
@@ -45,10 +47,19 @@ public class HintWoord {
 	@Override
 	public String toString() {
 		String voorstellingVoorSpeler = "";
-		for (HintLetter hintLetter : letters) {
+		HintLetter hintLetter = null;
+		
+		hintLetter = letters.get(0);
+		if (!hintLetter.isGeraden()){
+			voorstellingVoorSpeler += "_";
+		}else {
+			voorstellingVoorSpeler += hintLetter.getLetter();
+		}
+		for (int i = 1; i < letters.size(); i++) {
+			hintLetter = letters.get(i);
 			if (hintLetter.equals(" ")) {
 				voorstellingVoorSpeler += "  ";
-			} else if (!hintLetter.isGeraden()) {
+			} else if (!hintLetter.isGeraden()) {	
 				voorstellingVoorSpeler += " _";
 			} else {
 				voorstellingVoorSpeler += " " + hintLetter.getLetter();

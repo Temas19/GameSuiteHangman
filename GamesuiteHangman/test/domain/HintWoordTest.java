@@ -14,10 +14,12 @@ public class HintWoordTest {
 		String woord = "test";
 		
 		HintWoord hint = new HintWoord(woord);
-		
+
 		assertEquals(woord, hint.getWoord());
 		assertEquals("_ _ _ _", hint.toString());
 		assertFalse(hint.isGeraden());
+		
+		
 	}
 	
 	@Test (expected = DomainException.class)
