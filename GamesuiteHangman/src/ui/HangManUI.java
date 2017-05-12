@@ -28,6 +28,12 @@ public class HangManUI {
 			if (keuze == null){
 				running = false;
 			}
+			else {
+				if(newHintWoord.raad(keuze) == true){
+					
+				}
+			}
+			
 			// Hier verder werken om letters te raden en te tonen 
 		}
 	}
